@@ -3,6 +3,13 @@ import pdb
 from PIL import Image
 import gradio as gr
 
+if not hasattr(Image, 'Resampling'):  # Pillow<9.0
+  Image.Resampling = Image
+if not hasattr(Image, 'Transform'):  # Same trick as before.
+  Image.Transform = Image
+if not hasattr(Image, 'Transpose'): 
+  Image.Transpose = Image
+
 from src.utils.gradio_utils import *
 from src.utils.huggingface_utils import *
 # from utils.generate_synthetic import *
@@ -134,4 +141,4 @@ if __name__=="__main__":
 
     gr.close_all()
     demo.queue(concurrency_count=1)
-    demo.launch(server_port=8088, server_name="0.0.0.0", debug=True)
+    demo.launch(server_port=8088, server_name="0.0.0.0", debug=True, share=True)
