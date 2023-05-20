@@ -1,5 +1,5 @@
 import torch
-from diffusers.models.attention import CrossAttention
+from diffusers.models.cross_attention import CrossAttention
 
 class MyCrossAttnProcessor:
     def __call__(self, attn: CrossAttention, hidden_states, encoder_hidden_states=None, attention_mask=None):
